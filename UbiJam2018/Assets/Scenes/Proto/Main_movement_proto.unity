@@ -327,7 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3b58f3c2201eb249bca07d96bcab397, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playersFarm: 0
+  playersFarm: 1
 --- !u!1 &608274953
 GameObject:
   m_ObjectHideFlags: 0
@@ -457,6 +457,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grabParent: {fileID: 1885924201}
+--- !u!114 &1534049933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1534049926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01ecfe76be90cac4c9f0ac79989c6275, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerType: 1
 --- !u!1001 &1596208337
 Prefab:
   m_ObjectHideFlags: 0
@@ -736,6 +748,21 @@ Prefab:
         type: 2}
       propertyPath: m_SortingOrder
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 50911556828085986, guid: ed37826d1ec64ae4f97e3a7fc603050a,
+        type: 2}
+      propertyPath: m_LinearDrag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50911556828085986, guid: ed37826d1ec64ae4f97e3a7fc603050a,
+        type: 2}
+      propertyPath: m_AngularDrag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114375512791408138, guid: ed37826d1ec64ae4f97e3a7fc603050a,
+        type: 2}
+      propertyPath: playerSpeed
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed37826d1ec64ae4f97e3a7fc603050a, type: 2}
