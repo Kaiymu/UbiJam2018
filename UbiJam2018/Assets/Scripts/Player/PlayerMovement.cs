@@ -38,7 +38,6 @@ public class PlayerMovement : MonoBehaviour {
         Vector2 velocity = new Vector2();
         if (inputManagerHorizontal > 0) {
             velocity.x = (-transform.right * playerSpeed).x;
-            Debug.Log("Going left");
         } else if(inputManagerHorizontal < 0){
             velocity.x = (transform.right * playerSpeed).x;
         }
