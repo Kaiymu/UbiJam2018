@@ -28,6 +28,10 @@ public class InputManager : MonoBehaviour
         return false;
     }
 
+    public float GetJoystickHorizontalFromPlayerOne() {
+        return Input.GetAxis("Horizontal");
+    }
+
     public int GoHorizontal()
     {
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
@@ -41,13 +45,13 @@ public class InputManager : MonoBehaviour
         return 0;
     }
 
-    public int GoHorizontal(List<KeyCode> left, List<KeyCode> right)
+    public float GoHorizontal(List<KeyCode> left, List<KeyCode> right)
     {
         for (int i = 0; i < left.Count; i++) {
             var leftKey = left[i];
 
             if (Input.GetKey(leftKey)) {
-                return 1;
+                return 1f;
             }
         }
 
@@ -55,11 +59,11 @@ public class InputManager : MonoBehaviour
             var rightKey = right[i];
 
             if (Input.GetKey(rightKey)) {
-                return -1;
+                return -1f;
             }
         }
 
-        return 0;
+        return 0f;
     }
 
     public int GoHorizontal(List<string> left, List<string> right)
