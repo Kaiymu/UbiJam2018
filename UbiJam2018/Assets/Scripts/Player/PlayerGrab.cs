@@ -14,4 +14,12 @@ public class PlayerGrab : MonoBehaviour {
         _objectGrabbed.transform.parent = grabParent.transform;
         _objectGrabbed.transform.localPosition = Vector3.zero;
     }
+
+    public void UnGrab()
+    {
+        if (_objectGrabbed == null)
+            return;
+
+        _objectGrabbed.transform.parent = null;
+    }
 }
