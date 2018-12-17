@@ -22,7 +22,10 @@ public class SpawningManager : MonoBehaviour {
 
     Vector2 GetRandomPosition()
     {
-        return new Vector2(Random.value * spawningZone.transform.position.x, Random.value * spawningZone.transform.position.y);
+        float originX = spawningZone.transform.position.x + (spawningZone.GetComponent<Collider2D>().bounds.size.x / 2.0f);
+        float originY = spawningZone.transform.position.y + spawningZone.GetComponent<Collider2D>().bounds.size.y;
+
+        return new Vector2(Random.value * originX, Random.value * originY);
     }
 
     GameObject GetRandomAnimal()
