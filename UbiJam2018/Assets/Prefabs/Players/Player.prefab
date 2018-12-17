@@ -105,6 +105,8 @@ MonoBehaviour:
   down: 73000000
   useBonus: 65000000
   playerSpeed: 100
+  dashForce: 10
+  dashRecovery: 2
 --- !u!212 &212309688432198450
 SpriteRenderer:
   m_ObjectHideFlags: 1

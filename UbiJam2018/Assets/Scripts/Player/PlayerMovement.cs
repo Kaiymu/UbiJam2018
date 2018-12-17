@@ -13,15 +13,25 @@ public class PlayerMovement : MonoBehaviour {
     [Header("Speed")]
     public float playerSpeed = 50f;
 
+    [Header("Dash")]
+    public float dashForce = 10f;
+    public float dashRecovery = 2f;
+
+    private float _deltaTimeAdd;
+
     private Rigidbody2D _rig2D;
+
+    private bool _isDashing = false;
 
     private void Awake()
     {
         _rig2D = GetComponent<Rigidbody2D>();
     }
 
-    public void Update()
+    public void FixedUpdate()
     {
+        _deltaTimeAdd += Time.deltaTime;
+
         var inputManagerHorizontal = InputManager.Instance.GoHorizontal(left, right);
         var inputManagerVertical = InputManager.Instance.GoVertical(up, down);
 
@@ -40,6 +50,18 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         _rig2D.velocity = velocity;
+
+        // Dashing
+        if (Input.GetKeyDown(KeyCode.E) && !_isDashing) {
+            _isDashing = true;
+            _rig2D.AddForce(velocity * dashForce, ForceMode2D.Impulse);
+        }
+
+        if(_deltaTimeAdd > dashRecovery && _isDashing) {
+            _deltaTimeAdd = 0f;
+            _isDashing = false;
+        }
+
     }
 
 }
