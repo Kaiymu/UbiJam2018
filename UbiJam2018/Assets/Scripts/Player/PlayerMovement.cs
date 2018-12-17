@@ -10,6 +10,9 @@ public class PlayerMovement : MonoBehaviour {
     public List<KeyCode> down;
     public List<KeyCode> useBonus;
 
+    public enum MovementState { NONE, IDLE, DASH, MOVE}
+    public MovementState movementState;
+
     [Header("Speed")]
     public float playerSpeed = 50f;
 
@@ -35,32 +38,46 @@ public class PlayerMovement : MonoBehaviour {
         var inputManagerHorizontal = InputManager.Instance.GoHorizontal(left, right);
         var inputManagerVertical = InputManager.Instance.GoVertical(up, down);
 
-        Vector2 velocity = new Vector2();
+        Vector2 _direction = new Vector2();
         if (inputManagerHorizontal > 0) {
-            velocity.x = (-transform.right * playerSpeed).x;
+            _direction.x = -transform.right.x;
+            _rig2D.AddForce(-transform.right * playerSpeed, ForceMode2D.Force);
         } else if(inputManagerHorizontal < 0){
-            velocity.x = (transform.right * playerSpeed).x;
+            _direction.x = transform.right.x;
+            _rig2D.AddForce(transform.right * playerSpeed, ForceMode2D.Force);
         }
 
         if (inputManagerVertical > 0) {
-            velocity.y = (transform.up * playerSpeed).y;
+            _direction.y = transform.up.y;
+            _rig2D.AddForce(transform.up * playerSpeed, ForceMode2D.Force);
         } else if (inputManagerVertical < 0) {
-            velocity.y = (-transform.up * playerSpeed).y;
+            _direction.y = -transform.up.y;
+            _rig2D.AddForce(-transform.up * playerSpeed, ForceMode2D.Force);
         }
-
-        _rig2D.velocity = velocity;
 
         // Dashing
         if (Input.GetKeyDown(KeyCode.E) && !_isDashing) {
-            _isDashing = true;
-            _rig2D.AddForce(velocity * dashForce, ForceMode2D.Impulse);
+            _rig2D.AddForce(_direction * dashForce, ForceMode2D.Impulse);
         }
 
         if(_deltaTimeAdd > dashRecovery && _isDashing) {
             _deltaTimeAdd = 0f;
-            _isDashing = false;
         }
 
+        _MovementState(_rig2D.velocity);
     }
 
+    private void _MovementState(Vector2 velocity)
+    {
+        if(velocity != Vector2.zero) {
+            if(Mathf.Abs(velocity.x) > 10f || Mathf.Abs(velocity.y) > 10f) {
+                movementState = MovementState.DASH;
+            } else {
+                movementState = MovementState.MOVE;
+            }
+        } else {
+            movementState = MovementState.IDLE;
+        }
+    }
+    
 }

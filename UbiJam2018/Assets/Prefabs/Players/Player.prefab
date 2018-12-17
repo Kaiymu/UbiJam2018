@@ -88,7 +88,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1
+  m_LinearDrag: 10
   m_AngularDrag: 1
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -137,8 +137,8 @@ MonoBehaviour:
   up: 7a000000
   down: 73000000
   useBonus: 65000000
-  playerSpeed: 10
-  dashForce: 10
+  playerSpeed: 100
+  dashForce: 100
   dashRecovery: 2
 --- !u!114 &114618608148575978
 MonoBehaviour:

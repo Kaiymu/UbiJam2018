@@ -85,14 +85,14 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 500
-  m_AngularDrag: 500
+  m_LinearDrag: 10
+  m_AngularDrag: 1
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &61617467184031660
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -129,13 +129,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a8d8616a095d3f46a24167e719b4dac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: 01010000
+  left: 27000000
   right: 03010000
   up: 05010000
   down: 02010000
   useBonus: 65000000
   playerSpeed: 100
-  dashForce: 10
+  dashForce: 100
   dashRecovery: 2
 --- !u!212 &212671960520970596
 SpriteRenderer:
