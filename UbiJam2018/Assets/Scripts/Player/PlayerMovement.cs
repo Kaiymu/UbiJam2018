@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour
+{
 
     [Header("Player inputs")]
     public List<KeyCode> left;
@@ -11,7 +12,7 @@ public class PlayerMovement : MonoBehaviour {
     public List<KeyCode> down;
     public List<KeyCode> useBonus;
 
-    public enum MovementState { NONE, IDLE, DASH, MOVE}
+    public enum MovementState { NONE, IDLE, DASH, MOVE }
     public MovementState movementState;
 
     [Header("Speed")]
@@ -32,7 +33,13 @@ public class PlayerMovement : MonoBehaviour {
     private bool _isDashing = false;
 
     private Player _player;
-    
+
+    private Animator _animator;
+
+    private SpriteRenderer _spriteRenderer;
+
+    private PlayerGrab _playerGrab;
+
     [HideInInspector]
     public bool stun;
 
@@ -40,14 +47,19 @@ public class PlayerMovement : MonoBehaviour {
     {
         _rig2D = GetComponent<Rigidbody2D>();
         _player = GetComponent<Player>();
+        _animator = GetComponent<Animator>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _playerGrab = GetComponent<PlayerGrab>();
     }
 
     public void FixedUpdate()
     {
-        if (stun) {
+        if (stun)
+        {
             _stunTime += Time.deltaTime;
 
-            if(_stunTime > stunTime) {
+            if (_stunTime > stunTime)
+            {
                 stun = false;
                 _stunTime = 0f;
             }
@@ -64,24 +76,31 @@ public class PlayerMovement : MonoBehaviour {
         var inputJoystickVertical = inputManager.GetJoystickVerticalFromPlayer(_player.playerType);
 
         Vector2 _direction = new Vector2();
-        if (inputKeyboardHorizontal > 0 || inputJoystickHorizontal > 0) {
+        if (inputKeyboardHorizontal > 0 || inputJoystickHorizontal > 0)
+        {
             _direction.x = -transform.right.x;
             _rig2D.AddForce(-transform.right * playerSpeed, ForceMode2D.Force);
-        } else if(inputKeyboardHorizontal < 0 || inputJoystickHorizontal < 0) {
+        }
+        else if (inputKeyboardHorizontal < 0 || inputJoystickHorizontal < 0)
+        {
             _direction.x = transform.right.x;
             _rig2D.AddForce(transform.right * playerSpeed, ForceMode2D.Force);
         }
 
-        if (inputKeyboardVertical > 0 || inputJoystickVertical > 0) {
+        if (inputKeyboardVertical > 0 || inputJoystickVertical > 0)
+        {
             _direction.y = transform.up.y;
             _rig2D.AddForce(transform.up * playerSpeed, ForceMode2D.Force);
-        } else if (inputKeyboardVertical < 0 || inputJoystickVertical < 0) {
+        }
+        else if (inputKeyboardVertical < 0 || inputJoystickVertical < 0)
+        {
             _direction.y = -transform.up.y;
             _rig2D.AddForce(-transform.up * playerSpeed, ForceMode2D.Force);
         }
 
         // Dashing
-        if ((Input.GetKeyDown(KeyCode.E) || inputManager.GetJoystickSubmit(_player.playerType)) && !_isDashing) {
+        if ((Input.GetKeyDown(KeyCode.E) || inputManager.GetJoystickSubmit(_player.playerType)) && !_isDashing)
+        {
             _isDashing = true;
             _rig2D.AddForce(_direction * dashForce, ForceMode2D.Impulse);
         }
@@ -89,7 +108,8 @@ public class PlayerMovement : MonoBehaviour {
         if (_isDashing)
             _deltaTimeAdd += Time.deltaTime;
 
-        if (_deltaTimeAdd > dashRecovery && _isDashing) {
+        if (_deltaTimeAdd > dashRecovery && _isDashing)
+        {
             _deltaTimeAdd = 0f;
             _isDashing = false;
         }
@@ -99,15 +119,34 @@ public class PlayerMovement : MonoBehaviour {
 
     private void _MovementState(Vector2 velocity)
     {
-        if(velocity != Vector2.zero) {
-            if(Mathf.Abs(velocity.x) > 10f || Mathf.Abs(velocity.y) > 10f) {
+        if (velocity.magnitude > 0.1)
+        {
+            if (Mathf.Abs(velocity.x) > 10f || Mathf.Abs(velocity.y) > 10f)
+            {
                 movementState = MovementState.DASH;
-            } else {
-                movementState = MovementState.MOVE;
             }
-        } else {
-            movementState = MovementState.IDLE;
+            else
+            {
+                movementState = MovementState.MOVE;
+                _spriteRenderer.flipX = velocity.x > 0;
+                if (_playerGrab.animalHold == null)
+                {
+                    _animator.SetInteger("Action", 1);
+                }
+                else
+                {
+                    _animator.SetInteger("Action", 2);
+                }
+            }
+        }
+        else
+        {
+            if (movementState != MovementState.IDLE)
+            {
+                movementState = MovementState.IDLE;
+                _animator.SetInteger("Action", 0);
+            }
         }
     }
-    
+
 }
