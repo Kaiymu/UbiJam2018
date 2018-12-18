@@ -119,7 +119,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void _MovementState(Vector2 velocity)
     {
-        if (velocity.magnitude > 0.1)
+        Debug.LogError(velocity.magnitude);
+        if (velocity.magnitude > 2)
         {
             if (Mathf.Abs(velocity.x) > 10f || Mathf.Abs(velocity.y) > 10f)
             {
