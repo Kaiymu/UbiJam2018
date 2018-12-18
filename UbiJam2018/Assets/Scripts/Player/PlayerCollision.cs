@@ -17,7 +17,9 @@ public class PlayerCollision : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if(collision.gameObject.tag == "Player" && _playerMovement.movementState == PlayerMovement.MovementState.DASH) {
+            collision.gameObject.GetComponent<PlayerMovement>().stun = true;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
+    [Header("Player inputs")]
     public List<KeyCode> left;
     public List<KeyCode> right;
     public List<KeyCode> up;
@@ -20,6 +21,10 @@ public class PlayerMovement : MonoBehaviour {
     public float dashForce = 10f;
     public float dashRecovery = 2f;
 
+    [Header("Stun")]
+    public float stunTime = 0.3f;
+    private float _stunTime = 0f;
+
     private float _deltaTimeAdd;
 
     private Rigidbody2D _rig2D;
@@ -27,6 +32,9 @@ public class PlayerMovement : MonoBehaviour {
     private bool _isDashing = false;
 
     private Player _player;
+    
+    [HideInInspector]
+    public bool stun;
 
     private void Awake()
     {
@@ -36,6 +44,17 @@ public class PlayerMovement : MonoBehaviour {
 
     public void FixedUpdate()
     {
+        if (stun) {
+            _stunTime += Time.deltaTime;
+
+            if(_stunTime > stunTime) {
+                stun = false;
+                _stunTime = 0f;
+            }
+
+            return;
+        }
+
 
         var inputManager = InputManager.Instance;
         var inputKeyboardHorizontal = inputManager.GoHorizontal(left, right);
