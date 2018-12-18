@@ -22,7 +22,7 @@ public class Sheep : Animal
         }
         else
         {
-            _direction.x = -transform.up.y;
+            _direction.y = -transform.up.y;
         }
         _rig2D.AddForce(_direction * _velocity, ForceMode2D.Impulse);
         _nextChangeOfDirection = Time.time + intervalChangeDirectionInSec;

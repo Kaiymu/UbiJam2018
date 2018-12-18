@@ -69,7 +69,7 @@ public class SpawningManager : MonoBehaviour {
 
     void InvokeSpawn()
     {
-        int lenght = maxSpawningTimeInSec + 1 - minSpawningTimeInSec;
+        int lenght = maxSpawningTimeInSec - minSpawningTimeInSec;
         float randomInterval = minSpawningTimeInSec + Mathf.Sin((10 * Random.value) / Mathf.PI) * lenght;
         Spawn();
         //Debug.Log(randomInterval);
