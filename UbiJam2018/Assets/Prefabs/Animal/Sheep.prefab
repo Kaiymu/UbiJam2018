@@ -55,7 +55,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -100,10 +100,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   probability: 5
-  _velocity: 1
+  _velocity: 2
   intervalChangeDirectionInSec: 1
   points: 0
   velocityModifier: 0
+  animalZone: {fileID: 0}
   isGrabbed: 0
   isInFarm: 0
 --- !u!212 &212974799665320362

@@ -55,13 +55,13 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &61825527734763128
 BoxCollider2D:
@@ -101,9 +101,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   probability: 10
   _velocity: 100
-  intervalChangeDirectionInSec: 3
+  intervalChangeDirectionInSec: 1
   points: 0
   velocityModifier: 0
+  animalZone: {fileID: 0}
   isGrabbed: 0
   isInFarm: 0
 --- !u!212 &212764278509354760

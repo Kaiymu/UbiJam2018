@@ -8,6 +8,7 @@ TagManager:
   - Animals
   - Farm
   - TriggerPlayer
+  - Boundtag
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - 
   - Animals
   - Players
-  - 
+  - BoundTag
   - 
   - 
   - 

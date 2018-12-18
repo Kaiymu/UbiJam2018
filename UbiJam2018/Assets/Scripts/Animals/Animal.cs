@@ -34,10 +34,15 @@ public abstract class Animal : MonoBehaviour {
 
     protected abstract void changeDirection(bool up, bool down, bool right, bool left);
 
+    private void Awake()
+    {
+        _rig2D = GetComponent<Rigidbody2D>();
+    }
+
     void Start()
     {
         animalZoneCollider = animalZone.GetComponent<Collider2D>();
-        _rig2D = GetComponent<Rigidbody2D>();
+
         _nextChangeOfDirection = Time.time;
     }
 
@@ -49,6 +54,8 @@ public abstract class Animal : MonoBehaviour {
 
     protected bool isOutOfBounds()
     {
+        return false;
+
         if (_rig2D.transform.position.x <= zoneTopLeft.x)
         {
             if (_rig2D.transform.position.y >= zoneTopLeft.y)
@@ -93,7 +100,7 @@ public abstract class Animal : MonoBehaviour {
         isOutOfBounds();
         if (Time.time > _nextChangeOfDirection && CanBeGrabbed())
         {
-            _rig2D.velocity = Vector2.zero;
+            //_rig2D.velocity = Vector2.zero;
             Move();
         }
     }

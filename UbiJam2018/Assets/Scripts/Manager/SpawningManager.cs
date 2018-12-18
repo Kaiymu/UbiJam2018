@@ -14,6 +14,7 @@ public class SpawningManager : MonoBehaviour {
     public int minSpawningTimeInSec;
     public int maxSpawningTimeInSec;
 
+    public Vector2 customBoundValue;
     void Spawn()
     {
         GameObject randomAnimal = GetRandomAnimal();
@@ -23,10 +24,10 @@ public class SpawningManager : MonoBehaviour {
         var animal = Instantiate(randomAnimal, position, Quaternion.identity);
 
         Collider2D animalZoneCollider = animalZone.GetComponent<Collider2D>();
-        float animalZoneRightLimit = animalZone.transform.position.x + (animalZoneCollider.bounds.size.x / 2);
-        float animalZoneLeftLimit = animalZone.transform.position.x - (animalZoneCollider.bounds.size.x / 2);
-        float animalZoneTopLimit = animalZone.transform.position.y + (animalZoneCollider.bounds.size.y / 2);
-        float animalZoneBottomLimit = animalZone.transform.position.y - (animalZoneCollider.bounds.size.y / 2);
+        float animalZoneRightLimit = animalZone.transform.position.x + (customBoundValue.x / 2);
+        float animalZoneLeftLimit = animalZone.transform.position.x - (customBoundValue.x / 2);
+        float animalZoneTopLimit = animalZone.transform.position.y + (customBoundValue.y / 2);
+        float animalZoneBottomLimit = animalZone.transform.position.y - (customBoundValue.y / 2);
         Vector2 zoneTopLeft = new Vector2(animalZoneLeftLimit, animalZoneTopLimit);
         Vector2 zoneBottomRight = new Vector2(animalZoneRightLimit, animalZoneBottomLimit);
 
