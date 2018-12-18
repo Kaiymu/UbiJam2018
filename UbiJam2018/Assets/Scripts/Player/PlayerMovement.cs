@@ -26,42 +26,53 @@ public class PlayerMovement : MonoBehaviour {
 
     private bool _isDashing = false;
 
+    private Player _player;
+
     private void Awake()
     {
         _rig2D = GetComponent<Rigidbody2D>();
+        _player = GetComponent<Player>();
     }
 
     public void FixedUpdate()
     {
-        _deltaTimeAdd += Time.deltaTime;
 
-        var inputManagerHorizontal = InputManager.Instance.GoHorizontal(left, right);
-        var inputManagerVertical = InputManager.Instance.GoVertical(up, down);
+        var inputManager = InputManager.Instance;
+        var inputKeyboardHorizontal = inputManager.GoHorizontal(left, right);
+        var inputKeyboardVertical = inputManager.GoVertical(up, down);
+
+        var inputJoystickHorizontal = inputManager.GetJoystickHorizontalFromPlayer(_player.playerType);
+        var inputJoystickVertical = inputManager.GetJoystickVerticalFromPlayer(_player.playerType);
 
         Vector2 _direction = new Vector2();
-        if (inputManagerHorizontal > 0) {
+        if (inputKeyboardHorizontal > 0 || inputJoystickHorizontal > 0) {
             _direction.x = -transform.right.x;
             _rig2D.AddForce(-transform.right * playerSpeed, ForceMode2D.Force);
-        } else if(inputManagerHorizontal < 0){
+        } else if(inputKeyboardHorizontal < 0 || inputJoystickHorizontal < 0) {
             _direction.x = transform.right.x;
             _rig2D.AddForce(transform.right * playerSpeed, ForceMode2D.Force);
         }
 
-        if (inputManagerVertical > 0) {
+        if (inputKeyboardVertical > 0 || inputJoystickVertical > 0) {
             _direction.y = transform.up.y;
             _rig2D.AddForce(transform.up * playerSpeed, ForceMode2D.Force);
-        } else if (inputManagerVertical < 0) {
+        } else if (inputKeyboardVertical < 0 || inputJoystickVertical < 0) {
             _direction.y = -transform.up.y;
             _rig2D.AddForce(-transform.up * playerSpeed, ForceMode2D.Force);
         }
 
         // Dashing
-        if (Input.GetKeyDown(KeyCode.E) && !_isDashing) {
+        if ((Input.GetKeyDown(KeyCode.E) || inputManager.GetJoystickSubmit(_player.playerType)) && !_isDashing) {
+            _isDashing = true;
             _rig2D.AddForce(_direction * dashForce, ForceMode2D.Impulse);
         }
 
-        if(_deltaTimeAdd > dashRecovery && _isDashing) {
+        if (_isDashing)
+            _deltaTimeAdd += Time.deltaTime;
+
+        if (_deltaTimeAdd > dashRecovery && _isDashing) {
             _deltaTimeAdd = 0f;
+            _isDashing = false;
         }
 
         _MovementState(_rig2D.velocity);

@@ -28,8 +28,44 @@ public class InputManager : MonoBehaviour
         return false;
     }
 
-    public float GetJoystickHorizontalFromPlayerOne() {
-        return Input.GetAxis("Horizontal");
+    public float GetJoystickHorizontalFromPlayer(GameManager.Players players) {
+
+        return Input.GetAxis("Horizontal" + PlayerAxisName(players));
+    }
+
+    public float GetJoystickVerticalFromPlayer(GameManager.Players players)
+    {
+        return Input.GetAxis("Vertical" + PlayerAxisName(players));
+    }
+
+    public bool GetJoystickSubmit(GameManager.Players players)
+    {
+        if (players == GameManager.Players.PLAYER_ONE) {
+            return Input.GetKeyDown(KeyCode.Joystick1Button0);
+        } else if (players == GameManager.Players.PLAYER_TWO) {
+            return Input.GetKeyDown(KeyCode.Joystick2Button0);
+        } else if (players == GameManager.Players.PLAYER_THREE) {
+            return Input.GetKeyDown(KeyCode.Joystick3Button0);
+        } else if (players == GameManager.Players.PLAYER_FOUR) {
+            return Input.GetKeyDown(KeyCode.Joystick4Button0);
+        }
+
+        return false;
+    }
+
+    public string PlayerAxisName(GameManager.Players players)
+    {
+        if (players == GameManager.Players.PLAYER_ONE) {
+            return "P1";
+        } else if (players == GameManager.Players.PLAYER_TWO) {
+            return "P2";
+        } else if (players == GameManager.Players.PLAYER_THREE) {
+            return "P3";
+        } else if (players == GameManager.Players.PLAYER_FOUR) {
+            return "P4";
+        }
+
+        return string.Empty;
     }
 
     public int GoHorizontal()
