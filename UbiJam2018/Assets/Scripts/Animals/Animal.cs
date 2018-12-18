@@ -34,7 +34,7 @@ public abstract class Animal : MonoBehaviour {
 
     void Update()
     {
-        if (Time.time > _nextChangeOfDirection)
+        if (Time.time > _nextChangeOfDirection && CanBeGrabbed())
         {
             Move();
         }

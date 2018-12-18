@@ -32,8 +32,8 @@ public class PlayerCollision : MonoBehaviour {
         if (collision.gameObject.tag == "Farm") {
             var farmingZone = collision.gameObject.GetComponent<FarmingZone>();
 
-            if (farmingZone != null && farmingZone.playersFarm == player.playerType) {
-                farmingZone.AddAnimalsInFarm(_playerGrab.objectGrabbed.GetComponent<Animal>());
+            if (farmingZone != null && farmingZone.playersFarm == player.playerType && _playerGrab.animalHold != null) {
+                farmingZone.AddAnimalsInFarm(_playerGrab.animalHold.GetComponent<Animal>());
                 _playerGrab.UnGrab();
             }
         }
