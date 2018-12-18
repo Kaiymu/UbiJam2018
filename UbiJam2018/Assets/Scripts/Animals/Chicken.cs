@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class Chicken : Animal {
 
-    public Chicken() : base()
-    {
-        points = 1;
-    }
+    new int points = 5;
 
     protected override void Move()
     {
