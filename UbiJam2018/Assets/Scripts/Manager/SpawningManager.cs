@@ -6,6 +6,8 @@ public class SpawningManager : MonoBehaviour {
 
     [Header("Spawning")]
     public GameObject spawningZone;
+    public GameObject animalZone;
+
     public Animal[] animals;
     public int initialNumberOfAnimals;
     public float startSpawningTimeInSec;
@@ -18,7 +20,17 @@ public class SpawningManager : MonoBehaviour {
         //Debug.Log(randomAnimal.name);
         Vector2 position = GetRandomPosition();
         //Debug.Log(position);
-        Instantiate(randomAnimal, position, Quaternion.identity);
+        var animal = Instantiate(randomAnimal, position, Quaternion.identity);
+
+        Collider2D animalZoneCollider = animalZone.GetComponent<Collider2D>();
+        float animalZoneRightLimit = animalZone.transform.position.x + (animalZoneCollider.bounds.size.x / 2);
+        float animalZoneLeftLimit = animalZone.transform.position.x - (animalZoneCollider.bounds.size.x / 2);
+        float animalZoneTopLimit = animalZone.transform.position.y + (animalZoneCollider.bounds.size.y / 2);
+        float animalZoneBottomLimit = animalZone.transform.position.y - (animalZoneCollider.bounds.size.y / 2);
+        Vector2 zoneTopLeft = new Vector2(animalZoneLeftLimit, animalZoneTopLimit);
+        Vector2 zoneBottomRight = new Vector2(animalZoneRightLimit, animalZoneBottomLimit);
+
+        animal.GetComponent<Animal>().setBoundSize(zoneTopLeft, zoneBottomRight);
     }
 
     Vector2 GetRandomPosition()
