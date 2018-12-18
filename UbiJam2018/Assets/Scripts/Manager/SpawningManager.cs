@@ -8,8 +8,9 @@ public class SpawningManager : MonoBehaviour {
     public GameObject spawningZone;
     public Animal[] animals;
     public int initialNumberOfAnimals;
-    public float spawningIntervalInSec;
     public float startSpawningTimeInSec;
+    public int minSpawningTimeInSec;
+    public int maxSpawningTimeInSec;
 
     void Spawn()
     {
@@ -22,10 +23,24 @@ public class SpawningManager : MonoBehaviour {
 
     Vector2 GetRandomPosition()
     {
-        float originX = spawningZone.transform.position.x + (spawningZone.GetComponent<Collider2D>().bounds.size.x / 2.0f);
-        float originY = spawningZone.transform.position.y + spawningZone.GetComponent<Collider2D>().bounds.size.y;
-
-        return new Vector2(Random.value * originX, Random.value * originY);
+        float X = spawningZone.transform.position.x;
+        float Y = spawningZone.transform.position.y;
+        if (Random.value > 0.5f)
+        {
+            X = X + Random.value * (spawningZone.GetComponent<Collider2D>().bounds.size.x / 2.0f);
+        } else
+        {
+            X = X - Random.value * (spawningZone.GetComponent<Collider2D>().bounds.size.x / 2.0f);
+        }
+        if (Random.value > 0.5f)
+        {
+            Y = Y + Random.value * (spawningZone.GetComponent<Collider2D>().bounds.size.y / 2.0f);
+        }
+        else
+        {
+            Y = Y - Random.value * (spawningZone.GetComponent<Collider2D>().bounds.size.y / 2.0f);
+        }
+        return new Vector2(X, Y);
     }
 
     GameObject GetRandomAnimal()
@@ -52,6 +67,15 @@ public class SpawningManager : MonoBehaviour {
         return animals[animals.Length - 1].gameObject;
     }
 
+    void InvokeSpawn()
+    {
+        int lenght = maxSpawningTimeInSec + 1 - minSpawningTimeInSec;
+        float randomInterval = minSpawningTimeInSec + Mathf.Sin((10 * Random.value) / Mathf.PI) * lenght;
+        Spawn();
+        //Debug.Log(randomInterval);
+        Invoke("InvokeSpawn", randomInterval);
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -59,7 +83,7 @@ public class SpawningManager : MonoBehaviour {
         {
             Spawn();
         }
-        InvokeRepeating("Spawn", startSpawningTimeInSec, spawningIntervalInSec);
+        Invoke("InvokeSpawn", startSpawningTimeInSec);
     }
 
     // Update is called once per frame
