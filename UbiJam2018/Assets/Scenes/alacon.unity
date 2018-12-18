@@ -139,12 +139,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 644478024}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d264e024619ed064b92566585992aa42, type: 3}
+  m_Script: {fileID: 11500000, guid: 453fccf3fd8b1044e9cc08c805a396bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  probability: 25
+  probability: 10
   _velocity: 10
   intervalChangeDirectionInSec: 3
+  points: 0
+  velocityModifier: 0
 --- !u!4 &644478026
 Transform:
   m_ObjectHideFlags: 0
@@ -320,13 +322,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawningZone: {fileID: 1711120195}
   animals:
-  - {fileID: 1606485854}
   - {fileID: 644478025}
+  - {fileID: 1606485854}
   - {fileID: 1727849311}
   initialNumberOfAnimals: 1
   startSpawningTimeInSec: 0
-  minSpawningTimeInSec: 3
-  maxSpawningTimeInSec: 7
+  minSpawningTimeInSec: 1
+  maxSpawningTimeInSec: 5
 --- !u!212 &1212603463
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -412,12 +414,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1606485853}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d264e024619ed064b92566585992aa42, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d3af6dcda101a44c880afe3587d9d57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  probability: 25
+  probability: 2
   _velocity: 2
   intervalChangeDirectionInSec: 10
+  points: 0
+  velocityModifier: 0
 --- !u!4 &1606485855
 Transform:
   m_ObjectHideFlags: 0
@@ -610,7 +614,7 @@ GameObject:
   - component: {fileID: 1727849313}
   - component: {fileID: 1727849314}
   m_Layer: 0
-  m_Name: Pork
+  m_Name: Sheep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -627,9 +631,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 524ed74ae7f620648aadaa72484b349a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  probability: 50
-  _velocity: 5
-  intervalChangeDirectionInSec: 5
+  probability: 5
+  _velocity: 1
+  intervalChangeDirectionInSec: 1
+  points: 0
+  velocityModifier: 0
 --- !u!4 &1727849312
 Transform:
   m_ObjectHideFlags: 0
