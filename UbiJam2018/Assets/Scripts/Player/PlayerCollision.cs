@@ -14,16 +14,9 @@ public class PlayerCollision : MonoBehaviour {
         _playerMovement = player.GetComponent<PlayerMovement>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "Player" && _playerMovement.movementState == PlayerMovement.MovementState.DASH) {
-            collision.gameObject.GetComponent<PlayerMovement>().stun = true;
-        }
-    }
-
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Animals") {
+        if (collision.gameObject.tag == "Animals") {
             if(_playerMovement.movementState == PlayerMovement.MovementState.DASH) {
                 _playerGrab.Grab(collision.gameObject);
             }
@@ -35,6 +28,16 @@ public class PlayerCollision : MonoBehaviour {
             if (farmingZone != null && farmingZone.playersFarm == player.playerType && _playerGrab.animalHold != null) {
                 farmingZone.AddAnimalsInFarm(_playerGrab.animalHold.GetComponent<Animal>());
                 _playerGrab.UnGrab();
+            }
+        }
+
+        if (collision.gameObject.tag == "TriggerPlayer" && _playerMovement.movementState == PlayerMovement.MovementState.DASH) {
+            var playerEnnemy = collision.transform.parent.gameObject;
+            playerEnnemy.GetComponent<PlayerMovement>().stun = true;
+
+            var animalHold = playerEnnemy.GetComponent<PlayerGrab>().animalHold;
+            if (animalHold != null) {
+                _playerGrab.Grab(animalHold);
             }
         }
     }
