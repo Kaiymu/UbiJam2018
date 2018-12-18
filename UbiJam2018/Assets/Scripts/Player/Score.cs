@@ -3,22 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Score : MonoBehaviour {
+public class Score
+{
 
     private int points;
     private Dictionary<Type, int> caught;
 
-	// Use this for initialization
-	void Start () {
+    public Score()
+    {
         points = 0;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    internal void add(Animal animal)
+        caught = new Dictionary<Type, int>();
+    }
+    
+    public void add(Animal animal)
     {
         Type type = animal.GetType();
         if (!caught.ContainsKey(type))
@@ -28,5 +25,17 @@ public class Score : MonoBehaviour {
         caught[type]++;
 
         points += animal.points;
+    }
+
+    public override string ToString()
+    {
+        String result = "Points: " + points.ToString() + "\n";
+
+        foreach (Type type in caught.Keys)
+        {
+            result += type.ToString() + ": " + caught[type] + "\n";
+        }
+
+        return result;
     }
 }
