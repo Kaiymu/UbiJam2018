@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Chicken : Animal {
 
+    public Chicken() : base()
+    {
+        points = 1;
+    }
+
     protected override void Move()
     {
         if (Random.value > 0.5)
