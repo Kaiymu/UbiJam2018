@@ -16,6 +16,14 @@ public abstract class Animal : MonoBehaviour {
     protected float _nextChangeOfDirection;
     protected Rigidbody2D _rig2D;
 
+    public bool isGrabbed;
+    public bool isInFarm;
+
+    public bool CanBeGrabbed()
+    {
+        return (!isGrabbed && !isInFarm);
+    }
+
     protected abstract void Move();
 
     void Start()

@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour {
 
+    public Player player;
     private PlayerGrab _playerGrab;
-    private Player _player;
     private PlayerMovement _playerMovement;
 
     private void Awake()
     {
-        _playerGrab = GetComponent<PlayerGrab>();
-        _player = GetComponent<Player>();
-        _playerMovement = GetComponent<PlayerMovement>();
+        _playerGrab = player.GetComponent<PlayerGrab>();
+        _playerMovement = player.GetComponent<PlayerMovement>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -33,7 +32,8 @@ public class PlayerCollision : MonoBehaviour {
         if (collision.gameObject.tag == "Farm") {
             var farmingZone = collision.gameObject.GetComponent<FarmingZone>();
 
-            if (farmingZone != null && farmingZone.playersFarm == _player.playerType) {
+            if (farmingZone != null && farmingZone.playersFarm == player.playerType) {
+                farmingZone.AddAnimalsInFarm(_playerGrab.objectGrabbed.GetComponent<Animal>());
                 _playerGrab.UnGrab();
             }
         }

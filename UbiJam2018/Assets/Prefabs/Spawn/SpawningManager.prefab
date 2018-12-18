@@ -9,43 +9,64 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1231236475923952}
+  m_RootGameObject: {fileID: 1656733440700802}
   m_IsPrefabAsset: 1
---- !u!1 &1231236475923952
+--- !u!1 &1656733440700802
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4602136386531242}
-  - component: {fileID: 212420799170867098}
+  - component: {fileID: 4648833663548142}
+  - component: {fileID: 212484265896895418}
+  - component: {fileID: 114137793620769892}
   m_Layer: 0
-  m_Name: New Sprite
+  m_Name: SpawningManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4602136386531242
+--- !u!4 &4648833663548142
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1231236475923952}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.24472666, y: 1, z: -9.755272}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 1656733440700802}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.58, y: 0.41, z: 10}
+  m_LocalScale: {x: 0.225694, y: 0.47052598, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &212420799170867098
+--- !u!114 &114137793620769892
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1656733440700802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a934fec2b73c946a288645096c65ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawningZone: {fileID: 0}
+  animals:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initialNumberOfAnimals: 1
+  startSpawningTimeInSec: 0
+  minSpawningTimeInSec: 1
+  maxSpawningTimeInSec: 5
+--- !u!212 &212484265896895418
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1231236475923952}
+  m_GameObject: {fileID: 1656733440700802}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
