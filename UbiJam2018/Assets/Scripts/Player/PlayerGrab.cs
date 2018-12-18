@@ -7,20 +7,26 @@ public class PlayerGrab : MonoBehaviour {
     public Transform grabParent;
 
     [HideInInspector]
-    public GameObject objectGrabbed;
-	public void Grab(GameObject objectGrabbed)
+    public GameObject animalHold;
+	public void Grab(GameObject animalGrabbed)
     {
-        this.objectGrabbed = objectGrabbed;
+        if (animalHold != null)
+            return;
 
-        this.objectGrabbed.transform.parent = grabParent.transform;
-        this.objectGrabbed.transform.localPosition = Vector3.zero;
+        animalHold = animalGrabbed;
+
+        animalHold.transform.parent = grabParent.transform;
+        animalHold.transform.localPosition = Vector3.zero;
+
+        animalHold.GetComponent<Animal>().isGrabbed = true;
+        animalHold.GetComponent<Rigidbody2D>().simulated = false;
     }
 
     public void UnGrab()
     {
-        if (objectGrabbed == null)
+        if (animalHold == null)
             return;
 
-        objectGrabbed.transform.parent = null;
+        Destroy(animalHold);
     }
 }
