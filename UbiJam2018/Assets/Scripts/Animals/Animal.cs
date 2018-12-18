@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Animal : MonoBehaviour {
+public abstract class Animal : MonoBehaviour {
 
     [Header("Animal")]
     [Range(0, 100)]
@@ -10,29 +10,13 @@ public class Animal : MonoBehaviour {
 
     public float _velocity;
     public int intervalChangeDirectionInSec;
+    public int points;
+    public int velocityModifier;
 
-    private float _nextChangeOfDirection;
-    private Rigidbody2D _rig2D;
+    protected float _nextChangeOfDirection;
+    protected Rigidbody2D _rig2D;
 
-    void MoveRandomly()
-    {
-        if (Random.value > 0.5)
-        {
-            _rig2D.AddForce(-transform.right * _velocity, ForceMode2D.Force);
-        } else
-        {
-            _rig2D.AddForce(transform.right * _velocity, ForceMode2D.Force);
-        }
-
-        if (Random.value > 0.5)
-        {
-            _rig2D.AddForce(transform.up * _velocity, ForceMode2D.Force);
-        } else
-        {
-            _rig2D.AddForce(-transform.up * _velocity, ForceMode2D.Force);
-        }
-        _nextChangeOfDirection = Time.time + intervalChangeDirectionInSec;
-    }
+    protected abstract void Move();
 
     void Start()
     {
@@ -44,7 +28,7 @@ public class Animal : MonoBehaviour {
     {
         if (Time.time > _nextChangeOfDirection)
         {
-            MoveRandomly();
+            Move();
         }
     }
 }
