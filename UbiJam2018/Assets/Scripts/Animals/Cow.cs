@@ -28,4 +28,24 @@ public class Cow : Animal
         }
         _nextChangeOfDirection = Time.time + intervalChangeDirectionInSec;
     }
+    protected override void changeDirection(bool up, bool down, bool right, bool left)
+    {
+        if (up)
+        {
+            _rig2D.AddForce(transform.up * _velocity, ForceMode2D.Force);
+        }
+        if (down)
+        {
+            _rig2D.AddForce(-transform.up * _velocity, ForceMode2D.Force);
+        }
+        if (right)
+        {
+            _rig2D.AddForce(transform.right * _velocity, ForceMode2D.Force);
+        }
+        if (left)
+        {
+            _rig2D.AddForce(-transform.right * _velocity, ForceMode2D.Force);
+        }
+        _nextChangeOfDirection = Time.time + intervalChangeDirectionInSec;
+    }
 }

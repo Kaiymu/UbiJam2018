@@ -31,4 +31,26 @@ public class Sheep : Animal
         _rig2D.AddForce(_direction * _velocity, ForceMode2D.Impulse);
         _nextChangeOfDirection = Time.time + intervalChangeDirectionInSec;
     }
+    protected override void changeDirection(bool up, bool down, bool right, bool left)
+    {
+        Vector2 _direction = new Vector2();
+        if (up)
+        {
+            _direction.y = transform.up.y;
+        }
+        if (down)
+        {
+            _direction.y = -transform.up.y;
+        }
+        if (right)
+        {
+            _direction.x = transform.right.x;
+        }
+        if (left)
+        {
+            _direction.x = -transform.right.x;
+        }
+        _rig2D.AddForce(_direction * _velocity, ForceMode2D.Impulse);
+        _nextChangeOfDirection = Time.time + intervalChangeDirectionInSec;
+    }
 }
