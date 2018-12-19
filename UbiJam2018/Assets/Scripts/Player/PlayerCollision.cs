@@ -41,8 +41,20 @@ public class PlayerCollision : MonoBehaviour
         if (collision.gameObject.tag == "TriggerPlayer" && _playerMovement.movementState == PlayerMovement.MovementState.DASH)
         {
             var playerEnnemy = collision.transform.parent.gameObject;
+            var animalHold = playerEnnemy.GetComponent<PlayerGrab>().animalHold;
 
+            if (_playerGrab.animalHold.GetComponent<Animal>() != null && animalHold != null)
+            {
+                playerEnnemy.GetComponent<PlayerGrab>().DropAnimal();
+            }
+            else
+            {
+                if (animalHold != null)
+                {
+                    _playerGrab.Grab(animalHold);
+                }
 
+                playerEnnemy.GetComponent<PlayerGrab>().StealAnimal();
             }
         }
     }
