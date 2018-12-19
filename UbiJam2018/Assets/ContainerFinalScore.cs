@@ -9,4 +9,11 @@ public class ContainerFinalScore : MonoBehaviour {
     public Text chicken;
     public Text sheep;
     public Text cow;
+
+    public GameManager.Players players;
+
+    public void FillScore()
+    {
+        GameManager.GetScore(players).getChicken();
+    }
 }

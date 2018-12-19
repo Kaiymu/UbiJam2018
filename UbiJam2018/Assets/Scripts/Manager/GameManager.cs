@@ -20,8 +20,10 @@ public class GameManager : MonoBehaviour
     private GameState _previousGameState;
 
     public TimerManager timerManager;
+    public Text timerTextGame;
 
     public RectTransform finalScore;
+    public RectTransform backgroundBlack;
 
     void Awake()
     {
@@ -66,10 +68,10 @@ public class GameManager : MonoBehaviour
 
     public void SetGameState()
     {
-
         if (timerManager.timer < 0 && gameState == GameState.START)
         {
-            timerManager.ResetTimer(60);
+            timerManager.ChangeText(timerTextGame);
+            timerManager.ResetTimer(120);
             gameState = GameState.PLAY;
         }
         else if (timerManager.timer < 0 && gameState == GameState.PLAY)
@@ -78,6 +80,7 @@ public class GameManager : MonoBehaviour
         }
 
         finalScore.gameObject.SetActive(gameState == GameState.END);
+        backgroundBlack.gameObject.SetActive(gameState == GameState.END);
     }
 
     public bool ChangedState()

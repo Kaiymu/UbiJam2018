@@ -29,6 +29,13 @@ public class TimerManager : MonoBehaviour
 
     }
 
+
+    public void ChangeText(Text text)
+    {
+        timerText.gameObject.transform.parent.gameObject.SetActive(false);
+        timerText = text;
+    }
+
     public void ResetTimer(float resetTimer) {
         timer = resetTimer;
     }
