@@ -19,8 +19,13 @@ public abstract class Animal : MonoBehaviour {
     protected float _nextChangeOfDirection;
     protected Rigidbody2D _rig2D;
 
+    [HideInInspector]
     public bool isGrabbed;
+    [HideInInspector]
     public bool isInFarm;
+
+    public float speedPlayerGrabbedReduce = 1.5f;
+    public float dashPlayerGrabbedReduce = 2f;
 
     private bool firstUpdateDone = false;
 
@@ -60,9 +65,14 @@ public abstract class Animal : MonoBehaviour {
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        // Collision.gameobject => ton player
+        // Collision.gameobject.transform.parent.gameobject // Le player parent.
         if (collision.gameObject.tag == "TriggerFleeAnimal") {
             
         }
+    }
+
+    public virtual void AnimalGrabbed(PlayerMovement playerMovement)
+    {
+        isGrabbed = true;
     }
 }

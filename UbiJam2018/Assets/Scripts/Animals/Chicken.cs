@@ -48,4 +48,10 @@ public class Chicken : Animal {
         }
         _nextChangeOfDirection = Time.time + intervalChangeDirectionInSec;
     }
+
+    public override void AnimalGrabbed(PlayerMovement playerMovement)
+    {
+        base.AnimalGrabbed(playerMovement);
+        playerMovement.dashRecovery = playerMovement.dashRecovery * dashPlayerGrabbedReduce;
+    }
 }

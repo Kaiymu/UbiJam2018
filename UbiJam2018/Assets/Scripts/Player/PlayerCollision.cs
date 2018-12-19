@@ -30,19 +30,18 @@ public class PlayerCollision : MonoBehaviour {
                 farmingZone.AddAnimalsInFarm(animal);
                 _playerGrab.UnGrab();
                 GameManager.addPoints(player.playerType, animal);
-
-                Debug.Log(player.playerType.ToString() + " " +GameManager.GetScore(player.playerType));
             }
         }
 
         if (collision.gameObject.tag == "TriggerPlayer" && _playerMovement.movementState == PlayerMovement.MovementState.DASH) {
             var playerEnnemy = collision.transform.parent.gameObject;
-            playerEnnemy.GetComponent<PlayerMovement>().stun = true;
 
             var animalHold = playerEnnemy.GetComponent<PlayerGrab>().animalHold;
             if (animalHold != null) {
                 _playerGrab.Grab(animalHold);
             }
+
+            playerEnnemy.GetComponent<PlayerGrab>().StealAnimal();
         }
     }
 

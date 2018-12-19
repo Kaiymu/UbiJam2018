@@ -6,6 +6,13 @@ public class PlayerGrab : MonoBehaviour {
 
     public Transform grabParent;
 
+    private PlayerMovement _playerMovement;
+
+    private void Awake()
+    {
+        _playerMovement = GetComponent<PlayerMovement>();
+    }
+
     [HideInInspector]
     public GameObject animalHold;
 	public void Grab(GameObject animalGrabbed)
@@ -18,7 +25,7 @@ public class PlayerGrab : MonoBehaviour {
         animalHold.transform.parent = grabParent.transform;
         animalHold.transform.localPosition = Vector3.zero;
 
-        animalHold.GetComponent<Animal>().isGrabbed = true;
+        animalHold.GetComponent<Animal>().AnimalGrabbed(_playerMovement);
         animalHold.GetComponent<Rigidbody2D>().simulated = false;
     }
 
@@ -27,6 +34,14 @@ public class PlayerGrab : MonoBehaviour {
         if (animalHold == null)
             return;
 
+        _playerMovement.ResetMovementValue();
         Destroy(animalHold);
+    }
+
+    public void StealAnimal()
+    {
+        animalHold = null;
+        _playerMovement.ResetMovementValue();
+        _playerMovement.stun = true;
     }
 }

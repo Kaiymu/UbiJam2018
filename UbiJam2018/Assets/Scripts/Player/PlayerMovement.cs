@@ -40,6 +40,9 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerGrab _playerGrab;
 
+    private float _dashRecovery;
+    private float _playerSpeed;
+
     [HideInInspector]
     public bool stun;
 
@@ -50,6 +53,9 @@ public class PlayerMovement : MonoBehaviour
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _playerGrab = GetComponent<PlayerGrab>();
+
+        _dashRecovery = dashRecovery;
+        _playerSpeed = playerSpeed;
     }
 
     public void FixedUpdate()
@@ -150,6 +156,12 @@ public class PlayerMovement : MonoBehaviour
                 _animator.SetInteger("Action", 0);
             }
         }
+    }
+
+    public void ResetMovementValue()
+    {
+        dashRecovery = _dashRecovery;
+        playerSpeed = _playerSpeed;
     }
 
 }
