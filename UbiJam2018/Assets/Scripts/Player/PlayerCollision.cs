@@ -43,7 +43,7 @@ public class PlayerCollision : MonoBehaviour
             var playerEnnemy = collision.transform.parent.gameObject;
             var animalHold = playerEnnemy.GetComponent<PlayerGrab>().animalHold;
 
-            if (_playerGrab.animalHold.GetComponent<Animal>() != null && animalHold != null)
+            if (_playerGrab.animalHold != null && animalHold != null)
             {
                 playerEnnemy.GetComponent<PlayerGrab>().DropAnimal();
             }

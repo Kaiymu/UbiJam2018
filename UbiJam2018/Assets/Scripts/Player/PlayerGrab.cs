@@ -49,9 +49,14 @@ public class PlayerGrab : MonoBehaviour {
 
     public void DropAnimal()
     {
-        animalHold = null;
+        animalHold.GetComponent<Animal>().AnimalDropped();
+        animalHold.GetComponent<Rigidbody2D>().simulated = true;
+        animalHold.transform.parent = null;
+
         _playerMovement.ResetMovementValue();
         _playerMovement.stun = true;
-        animalHold.GetComponent<Animal>().AnimalDropped();
+
+        animalHold = null;
+
     }
 }
