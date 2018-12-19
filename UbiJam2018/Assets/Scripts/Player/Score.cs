@@ -26,7 +26,7 @@ public class Score
         }
         if (animal.GetType() == typeof(Sheep))
         {
-            totalPoints += 2;
+            totalPoints += 3;
         }
         if (animal.GetType() == typeof(Cow))
         {
