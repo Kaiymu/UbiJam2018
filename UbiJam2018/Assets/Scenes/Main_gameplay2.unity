@@ -2094,7 +2094,7 @@ GameObject:
   - component: {fileID: 695946915}
   - component: {fileID: 695946914}
   m_Layer: 5
-  m_Name: ContainerP1 (2)
+  m_Name: ContainerP3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2561,7 +2561,7 @@ GameObject:
   - component: {fileID: 969417465}
   - component: {fileID: 969417464}
   m_Layer: 5
-  m_Name: ContainerP1 (3)
+  m_Name: ContainerP4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2884,6 +2884,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d639770277cabe543bb89131111b62cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ScoreP1: {fileID: 1858268843}
+  ScoreP2: {fileID: 268791094}
+  ScoreP3: {fileID: 1883840972}
+  ScoreP4: {fileID: 501912667}
   gameState: 1
   timerManager: {fileID: 162004626}
 --- !u!1 &1364986351
@@ -3232,7 +3236,7 @@ GameObject:
   - component: {fileID: 1602882123}
   - component: {fileID: 1602882122}
   m_Layer: 5
-  m_Name: ContainerP1 (1)
+  m_Name: ContainerP2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
