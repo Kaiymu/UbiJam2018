@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,14 +10,7 @@ public class TimerManager : MonoBehaviour
     private int timerMinute = 0;
     private int timerSeconde = 0;
     private bool timerEndFlag = false;
-    private Text timerText;
-
-    // Use this for initialization
-    void Start()
-    {
-        timerText = GetComponent<Text>();
-
-    }
+    public Text timerText;
 
     // Update is called once per frame
     void Update()
@@ -35,21 +29,26 @@ public class TimerManager : MonoBehaviour
 
     }
 
+    public void ResetTimer(float resetTimer) {
+        timer = resetTimer;
+    }
+
     void getMinute()
     {
-        timerMinute = Mathf.FloorToInt(timer / 60);
+        timerMinute = (int)(timer / 60);
     }
 
     void getSeconde()
     {
-        timerSeconde = Mathf.FloorToInt(timer % 60);
+        timerSeconde = (int)(timer % 60);
     }
 
     void timerEnded()
     {
-        timerText.text = "Temps écoulé";
-        Debug.Log("TIMER FINI");
-        timerEndFlag = true;
+        if (GameManager.Instance.gameState == GameManager.GameState.END) {
+            timerText.text = "Time's up !";
+            timerEndFlag = true;
+        }
     }
 }
 

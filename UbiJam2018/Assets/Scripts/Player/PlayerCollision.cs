@@ -31,7 +31,7 @@ public class PlayerCollision : MonoBehaviour {
                 _playerGrab.UnGrab();
                 GameManager.addPoints(player.playerType, animal);
 
-                Debug.Log(GameManager.GetScore(player.playerType));
+                Debug.Log(player.playerType.ToString() + " " +GameManager.GetScore(player.playerType));
             }
         }
 

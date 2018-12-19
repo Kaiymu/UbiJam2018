@@ -18,7 +18,6 @@ public abstract class Animal : MonoBehaviour {
     protected Vector2 zoneBottomRight;
     protected float _nextChangeOfDirection;
     protected Rigidbody2D _rig2D;
-    protected Collider2D animalZoneCollider;
 
     public bool isGrabbed;
     public bool isInFarm;
@@ -41,8 +40,6 @@ public abstract class Animal : MonoBehaviour {
 
     void Start()
     {
-        animalZoneCollider = animalZone.GetComponent<Collider2D>();
-
         _nextChangeOfDirection = Time.time;
     }
 
@@ -52,52 +49,8 @@ public abstract class Animal : MonoBehaviour {
         zoneBottomRight = bottomRight;
     }
 
-    protected bool isOutOfBounds()
-    {
-        return false;
-
-        if (_rig2D.transform.position.x <= zoneTopLeft.x)
-        {
-            if (_rig2D.transform.position.y >= zoneTopLeft.y)
-            {
-                changeDirection(false, true, true, false);
-                return true;
-            } else if(_rig2D.transform.position.y <= zoneBottomRight.y)
-            {
-                changeDirection(true, false, true, false);
-                return true;
-            }
-            else
-            {
-                changeDirection(false, false, true, false);
-                return true;
-            }
-        }
-        else if (_rig2D.transform.position.x >= zoneBottomRight.x)
-        {
-            if (_rig2D.transform.position.y >= zoneTopLeft.y)
-            {
-                changeDirection(false, true, false, true);
-                return true;
-            }
-            else if (_rig2D.transform.position.y <= zoneBottomRight.y)
-            {
-                changeDirection(true, false, false, true);
-                return true;
-            } else
-            {
-                changeDirection(false, false, false, true);
-                return true;
-            }
-        } else
-        {
-            return false;
-        }
-    }
-
     void Update()
     {
-        isOutOfBounds();
         if (Time.time > _nextChangeOfDirection && CanBeGrabbed())
         {
             //_rig2D.velocity = Vector2.zero;

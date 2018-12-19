@@ -54,6 +54,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void FixedUpdate()
     {
+        if (GameManager.Instance.gameState != GameManager.GameState.PLAY)
+            return;
+
         if (stun)
         {
             _stunTime += Time.deltaTime;
