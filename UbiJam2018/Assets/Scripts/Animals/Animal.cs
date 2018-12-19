@@ -10,7 +10,7 @@ public abstract class Animal : MonoBehaviour {
 
     public float _velocity;
     public int intervalChangeDirectionInSec;
-    public int points;
+    public int points = 0;
     public int velocityModifier;
 
     protected Vector2 zoneTopLeft;
