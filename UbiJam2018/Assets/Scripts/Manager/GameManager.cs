@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public static Dictionary<Players, Score> scores = new Dictionary<Players, Score>();
 
+    public int totalTime = 60;
+
     public enum Players { NONE, PLAYER_ONE, PLAYER_TWO, PLAYER_THREE, PLAYER_FOUR }
 
     public enum GameState { NONE, START, PLAY, END }
@@ -50,7 +52,7 @@ public class GameManager : MonoBehaviour
     public void SetGameState() {
 
         if (timerManager.timer < 0 && gameState == GameState.START) {
-            timerManager.ResetTimer(60);
+            timerManager.ResetTimer(totalTime);
             gameState = GameState.PLAY;
         } else if (timerManager.timer < 0 && gameState == GameState.PLAY) {
             gameState = GameState.END;
