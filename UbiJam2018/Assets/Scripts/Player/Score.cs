@@ -38,4 +38,42 @@ public class Score
     {
         return totalPoints.ToString();
     }
+
+    public int getChicken()
+    {
+        var chickenType = typeof(Chicken);
+        if (caught.ContainsKey(chickenType))
+        {
+            return caught[chickenType];
+        } else
+        {
+            return 0;
+        }
+    }
+    public int getCow()
+    {
+        var cowType = typeof(Cow);
+        if (caught.ContainsKey(cowType))
+        {
+            return caught[cowType];
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    public int getSheep()
+    {
+        var sheepType = typeof(Sheep);
+        if (caught.ContainsKey(sheepType))
+        {
+            return caught[sheepType];
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
 }
