@@ -1195,6 +1195,11 @@ Prefab:
       value: 
       objectReference: {fileID: 114081645097527704, guid: 7f7ff5acd51253e478fe9d601507ea12,
         type: 2}
+    - target: {fileID: 95416519215160284, guid: a5bb9c2adcaa36d4b875889b09e45ade,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e8149f68a5713a8419748e5b8d606ccd, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5bb9c2adcaa36d4b875889b09e45ade, type: 2}
   m_IsPrefabAsset: 0
@@ -2193,6 +2198,11 @@ Prefab:
       value: 
       objectReference: {fileID: 114081645097527704, guid: 7f7ff5acd51253e478fe9d601507ea12,
         type: 2}
+    - target: {fileID: 95722914672342820, guid: 18f7aecbe91976a41b592b9fe35959de,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 080bd75a01c81ac438504ae46b40a14d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18f7aecbe91976a41b592b9fe35959de, type: 2}
   m_IsPrefabAsset: 0
@@ -2655,6 +2665,11 @@ Prefab:
       value: 
       objectReference: {fileID: 114081645097527704, guid: 7f7ff5acd51253e478fe9d601507ea12,
         type: 2}
+    - target: {fileID: 95855194750903324, guid: 38dec7ae74dc8d94fbd4931e3f1c1fc9,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 05b2d031188ef604d83112a86a8aef27, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38dec7ae74dc8d94fbd4931e3f1c1fc9, type: 2}
   m_IsPrefabAsset: 0
@@ -4487,12 +4502,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114118672936455490, guid: dc2c78d3d74412640925207c4d2f3c97,
-        type: 2}
-      propertyPath: fxFumee
-      value: 
-      objectReference: {fileID: 114081645097527704, guid: 7f7ff5acd51253e478fe9d601507ea12,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc2c78d3d74412640925207c4d2f3c97, type: 2}
   m_IsPrefabAsset: 0

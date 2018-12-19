@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
         if (stun)
         {
             _stunTime += Time.deltaTime;
-
+            _animator.SetInteger("Action", 3);
             if (_stunTime > stunTime)
             {
                 stun = false;
@@ -133,6 +133,7 @@ public class PlayerMovement : MonoBehaviour
             if (Mathf.Abs(velocity.x) > 10f || Mathf.Abs(velocity.y) > 10f)
             {
                 movementState = MovementState.DASH;
+                _animator.SetInteger("Action", 4);
             }
             else
             {
