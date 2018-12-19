@@ -57,4 +57,12 @@ public abstract class Animal : MonoBehaviour {
             Move();
         }
     }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Collision.gameobject => ton player
+        if (collision.gameObject.tag == "TriggerFleeAnimal") {
+            
+        }
+    }
 }
