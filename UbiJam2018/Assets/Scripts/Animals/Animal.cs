@@ -55,6 +55,7 @@ public abstract class Animal : MonoBehaviour {
     {
         if (Time.time > _nextChangeOfDirection && CanBeGrabbed())
         {
+            _rig2D.velocity = Vector2.zero;
             Move();
         }
     }

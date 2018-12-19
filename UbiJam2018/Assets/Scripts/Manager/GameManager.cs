@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     private GameState _previousGameState;
 
     public TimerManager timerManager;
+    public SpawningManager spawningManager;
 
     public RectTransform finalScore;
 
@@ -74,9 +75,9 @@ public class GameManager : MonoBehaviour
         }
         else if (timerManager.timer < 0 && gameState == GameState.PLAY)
         {
+            spawningManager.stopSpawning();
             gameState = GameState.END;
         }
-
         finalScore.gameObject.SetActive(gameState == GameState.END);
     }
 
