@@ -7058,6 +7058,12 @@ Prefab:
       propertyPath: animalZone
       value: 
       objectReference: {fileID: 33871998}
+    - target: {fileID: 114137793620769892, guid: 98fa8af492f3b2441877d81d2693052c,
+        type: 2}
+      propertyPath: animalParent
+      value: 
+      objectReference: {fileID: 1296482334968210, guid: a7d82b1b838a59347a8999cfe92079b0,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98fa8af492f3b2441877d81d2693052c, type: 2}
   m_IsPrefabAsset: 0
