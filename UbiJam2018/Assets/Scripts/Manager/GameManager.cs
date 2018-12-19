@@ -1,14 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public Text ScoreP1;
+    public Text ScoreP2;
+    public Text ScoreP3;
+    public Text ScoreP4;
 
     public static GameManager Instance;
     public static Dictionary<Players, Score> scores = new Dictionary<Players, Score>();
-
-    public int totalTime = 60;
 
     public enum Players { NONE, PLAYER_ONE, PLAYER_TWO, PLAYER_THREE, PLAYER_FOUR }
 
@@ -45,24 +48,40 @@ public class GameManager : MonoBehaviour
         return scores[player];
     }
 
-    private void Update() {
+    private void Update()
+    {
         SetGameState();
+        SetScores();
     }
 
-    public void SetGameState() {
+    private void SetScores()
+    {
+        ScoreP1.text = scores.ContainsKey(Players.PLAYER_ONE) ? GetScore(Players.PLAYER_ONE).ToString() : "0";
+        ScoreP2.text = scores.ContainsKey(Players.PLAYER_TWO) ? GetScore(Players.PLAYER_TWO).ToString() : "0";
+        ScoreP3.text = scores.ContainsKey(Players.PLAYER_THREE) ? GetScore(Players.PLAYER_THREE).ToString() : "0";
+        ScoreP4.text = scores.ContainsKey(Players.PLAYER_FOUR) ? GetScore(Players.PLAYER_FOUR).ToString() : "0";
+    }
 
-        if (timerManager.timer < 0 && gameState == GameState.START) {
-            timerManager.ResetTimer(totalTime);
+    public void SetGameState()
+    {
+
+        if (timerManager.timer < 0 && gameState == GameState.START)
+        {
+            timerManager.ResetTimer(60);
             gameState = GameState.PLAY;
-        } else if (timerManager.timer < 0 && gameState == GameState.PLAY) {
+        }
+        else if (timerManager.timer < 0 && gameState == GameState.PLAY)
+        {
             gameState = GameState.END;
         }
     }
 
-    public bool ChangedState () {
+    public bool ChangedState()
+    {
         if (_previousGameState == gameState)
             return false;
-        else {
+        else
+        {
             _previousGameState = gameState;
             return true;
         }

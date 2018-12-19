@@ -5,7 +5,10 @@ using UnityEngine;
 public class Sheep : Animal
 {
 
-    new int points = 5;
+    public Sheep()
+    {
+        points = 2;
+    }
 
     protected override void Move()
     {
