@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
 
     public TimerManager timerManager;
 
+    public RectTransform finalScore;
+
     void Awake()
     {
         if (Instance == null)
@@ -74,6 +76,8 @@ public class GameManager : MonoBehaviour
         {
             gameState = GameState.END;
         }
+
+        finalScore.gameObject.SetActive(gameState == GameState.END);
     }
 
     public bool ChangedState()
