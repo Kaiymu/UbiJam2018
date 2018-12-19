@@ -139,6 +139,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 movementState = MovementState.MOVE;
                 _spriteRenderer.flipX = velocity.x > 0;
+
                 if (_playerGrab.animalHold == null)
                 {
                     _animator.SetInteger("Action", 1);
