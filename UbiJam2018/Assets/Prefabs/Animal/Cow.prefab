@@ -107,6 +107,8 @@ MonoBehaviour:
   animalZone: {fileID: 0}
   isGrabbed: 0
   isInFarm: 0
+  speedPlayerGrabbedReduce: 2
+  dashPlayerGrabbedReduce: 20
 --- !u!212 &212159597483498404
 SpriteRenderer:
   m_ObjectHideFlags: 1

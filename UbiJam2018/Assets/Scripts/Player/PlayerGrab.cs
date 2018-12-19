@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerGrab : MonoBehaviour {
 
     public Transform grabParent;
+    public FXFumee fxFumee;
 
     private PlayerMovement _playerMovement;
 
@@ -34,6 +35,7 @@ public class PlayerGrab : MonoBehaviour {
         if (animalHold == null)
             return;
 
+        Instantiate(fxFumee, animalHold.transform.position, Quaternion.identity);
         _playerMovement.ResetMovementValue();
         Destroy(animalHold);
     }
