@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1447450687518274}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.96, y: -0.19, z: 1}
+  m_LocalPosition: {x: -3.4198196, y: -1.0371583, z: 1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 0}
@@ -55,7 +55,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 2
+  m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -104,11 +104,10 @@ MonoBehaviour:
   intervalChangeDirectionInSec: 1
   points: 0
   velocityModifier: 0
-  animalZone: {fileID: 0}
   isGrabbed: 0
   isInFarm: 0
-  speedPlayerGrabbedReduce: 1.5
-  dashPlayerGrabbedReduce: 5
+  speedPlayerGrabbedReduce: 1
+  dashPlayerGrabbedReduce: 1
 --- !u!212 &212764278509354760
 SpriteRenderer:
   m_ObjectHideFlags: 1
