@@ -12,7 +12,6 @@ public abstract class Animal : MonoBehaviour {
     public int intervalChangeDirectionInSec;
     public int points;
     public int velocityModifier;
-    public GameObject animalZone;
 
     protected Vector2 zoneTopLeft;
     protected Vector2 zoneBottomRight;
@@ -26,9 +25,7 @@ public abstract class Animal : MonoBehaviour {
 
     public float speedPlayerGrabbedReduce = 1.5f;
     public float dashPlayerGrabbedReduce = 2f;
-
-    private bool firstUpdateDone = false;
-
+    
     public bool CanBeGrabbed()
     {
         return (!isGrabbed && !isInFarm);
@@ -41,11 +38,11 @@ public abstract class Animal : MonoBehaviour {
     private void Awake()
     {
         _rig2D = GetComponent<Rigidbody2D>();
+        _nextChangeOfDirection = Time.time;
     }
 
     void Start()
     {
-        _nextChangeOfDirection = Time.time;
     }
 
     public void setBoundSize(Vector2 topLeft, Vector2 bottomRight)
@@ -58,7 +55,6 @@ public abstract class Animal : MonoBehaviour {
     {
         if (Time.time > _nextChangeOfDirection && CanBeGrabbed())
         {
-            //_rig2D.velocity = Vector2.zero;
             Move();
         }
     }
@@ -67,7 +63,27 @@ public abstract class Animal : MonoBehaviour {
     {
         // Collision.gameobject.transform.parent.gameobject // Le player parent.
         if (collision.gameObject.tag == "TriggerFleeAnimal") {
-            
+            var playerPosition = collision.gameObject.transform.position;
+            bool up = false;
+            bool down = false;
+            bool right = false;
+            bool left = false;
+            if (playerPosition.x > _rig2D.transform.position.x)
+            {
+                left = true;
+            } else
+            {
+                right = true;
+            }
+            if (playerPosition.y > _rig2D.transform.position.y)
+            {
+                down = true;
+            }
+            else
+            {
+                up = true;
+            }
+            changeDirection(up, down, right, left);
         }
     }
 
