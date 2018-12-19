@@ -46,4 +46,12 @@ public class PlayerGrab : MonoBehaviour {
         _playerMovement.ResetMovementValue();
         _playerMovement.stun = true;
     }
+
+    public void DropAnimal()
+    {
+        animalHold = null;
+        _playerMovement.ResetMovementValue();
+        _playerMovement.stun = true;
+        animalHold.GetComponent<Animal>().AnimalDropped();
+    }
 }

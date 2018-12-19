@@ -91,4 +91,9 @@ public abstract class Animal : MonoBehaviour {
     {
         isGrabbed = true;
     }
+
+    public virtual void AnimalDropped()
+    {
+        isGrabbed = false;
+    }
 }
