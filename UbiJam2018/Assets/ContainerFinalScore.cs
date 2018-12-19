@@ -12,8 +12,16 @@ public class ContainerFinalScore : MonoBehaviour {
 
     public GameManager.Players players;
 
+    private void Start()
+    {
+        FillScore();
+    }
+
     public void FillScore()
     {
-        GameManager.GetScore(players).getChicken();
+        score.text = "Score : " + GameManager.GetScore(players).ToString();
+        chicken.text = "Chicken : " + GameManager.GetScore(players).getChicken().ToString();
+        sheep.text = "Sheep : " + GameManager.GetScore(players).getSheep().ToString();
+        cow.text = "Cow : " + GameManager.GetScore(players).getCow().ToString();
     }
 }

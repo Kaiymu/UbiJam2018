@@ -43,13 +43,31 @@ public class PlayerMovement : MonoBehaviour
     private float _dashRecovery;
     private float _playerSpeed;
 
+    public AudioClip dashSound;
+    public AudioClip stunSound;
+
+    private AudioSource _audioSource;
+
     [HideInInspector]
-    public bool stun;
+    public bool _stun;
+
+    public bool stun
+    {
+        get { return _stun; }
+        set
+        {
+            _stun = value;
+            if (value) {
+                _audioSource.PlayOneShot(stunSound);
+            }
+        }
+    }
 
     private void Awake()
     {
         _rig2D = GetComponent<Rigidbody2D>();
         _player = GetComponent<Player>();
+        _audioSource = GetComponent<AudioSource>();
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _playerGrab = GetComponent<PlayerGrab>();
@@ -111,6 +129,7 @@ public class PlayerMovement : MonoBehaviour
         if ((Input.GetKeyDown(KeyCode.E) || inputManager.GetJoystickSubmit(_player.playerType)) && !_isDashing)
         {
             _isDashing = true;
+            _audioSource.PlayOneShot(dashSound);
             _rig2D.AddForce(_direction * dashForce, ForceMode2D.Impulse);
         }
 

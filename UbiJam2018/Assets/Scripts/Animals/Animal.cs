@@ -23,6 +23,9 @@ public abstract class Animal : MonoBehaviour {
     [HideInInspector]
     public bool isInFarm;
 
+    private AudioSource _audioSource;
+    public List<AudioClip> animalsSoundSpawn = new List<AudioClip>();
+
     public float speedPlayerGrabbedReduce = 1.5f;
     public float dashPlayerGrabbedReduce = 2f;
     
@@ -43,6 +46,11 @@ public abstract class Animal : MonoBehaviour {
 
     void Start()
     {
+        if (animalsSoundSpawn.Count == 0)
+            return;
+
+        _audioSource = GetComponent<AudioSource>();
+        _audioSource.PlayOneShot(animalsSoundSpawn[Random.Range(0, animalsSoundSpawn.Count - 1)]);
     }
 
     public void setBoundSize(Vector2 topLeft, Vector2 bottomRight)
@@ -55,6 +63,7 @@ public abstract class Animal : MonoBehaviour {
     {
         if (Time.time > _nextChangeOfDirection && CanBeGrabbed())
         {
+            _rig2D.velocity = Vector2.zero;
             Move();
         }
     }

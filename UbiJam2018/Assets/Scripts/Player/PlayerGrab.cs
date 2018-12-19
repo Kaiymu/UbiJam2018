@@ -6,7 +6,6 @@ public class PlayerGrab : MonoBehaviour {
 
     public Transform grabParent;
     public FXFumee fxFumee;
-    public TextMesh textScoring;
 
     private PlayerMovement _playerMovement;
 
@@ -37,8 +36,6 @@ public class PlayerGrab : MonoBehaviour {
             return;
 
         Instantiate(fxFumee, animalHold.transform.position, Quaternion.identity);
-        var position = new Vector3(animalHold.transform.position.x, animalHold.transform.position.y, -1);
-        Instantiate(textScoring, position, Quaternion.identity);
 
         _playerMovement.ResetMovementValue();
         Destroy(animalHold);

@@ -9,19 +9,24 @@ public class SpawningManager : MonoBehaviour {
     public GameObject animalZone;
 
     public Animal[] animals;
+    public GameObject animalParent;
+
     public int initialNumberOfAnimals;
     public float startSpawningTimeInSec;
     public int minSpawningTimeInSec;
     public int maxSpawningTimeInSec;
 
+    private bool shouldSpawn = true;
+
     public Vector2 customBoundValue;
     void Spawn()
     {
         GameObject randomAnimal = GetRandomAnimal();
-        //Debug.Log(randomAnimal.name);
         Vector2 position = GetRandomPosition();
-        //Debug.Log(position);
         var animal = Instantiate(randomAnimal, position, Quaternion.identity);
+        var animalParentInstantiee = Instantiate(animalParent, position, Quaternion.identity);
+
+        animal.transform.parent = animalParentInstantiee.transform;
 
         Collider2D animalZoneCollider = animalZone.GetComponent<Collider2D>();
         float animalZoneRightLimit = animalZone.transform.position.x + (customBoundValue.x / 2);
@@ -82,11 +87,13 @@ public class SpawningManager : MonoBehaviour {
 
     void InvokeSpawn()
     {
-        int lenght = maxSpawningTimeInSec - minSpawningTimeInSec;
-        float randomInterval = minSpawningTimeInSec + Mathf.Sin((10 * Random.value) / Mathf.PI) * lenght;
-        Spawn();
-        //Debug.Log(randomInterval);
-        Invoke("InvokeSpawn", randomInterval);
+        if (shouldSpawn)
+        {
+            int lenght = maxSpawningTimeInSec - minSpawningTimeInSec;
+            float randomInterval = minSpawningTimeInSec + Mathf.Sin((10 * Random.value) / Mathf.PI) * lenght;
+            Spawn();
+            Invoke("InvokeSpawn", randomInterval);
+        }
     }
 
     // Use this for initialization
@@ -102,5 +109,10 @@ public class SpawningManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+    }
+
+    public void stopSpawning()
+    {
+        shouldSpawn = false;
     }
 }

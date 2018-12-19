@@ -25,6 +25,15 @@ public class GameManager : MonoBehaviour
     public RectTransform finalScore;
     public RectTransform backgroundBlack;
 
+    public SpawningManager spawningManager;
+
+    [Header("Audios")]
+    public AudioClip rumbleSound;
+    public AudioClip scoreRecapSound;
+    public AudioClip cloche;
+
+    private AudioSource _audioSource;
+
     void Awake()
     {
         if (Instance == null)
@@ -35,7 +44,21 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+
+        _audioSource = GetComponent<AudioSource>();
+        _audioSource.clip = rumbleSound;
+        _audioSource.Play();
+        _audioSource.loop = true;
+
+        scores.Clear();
+
+        scores.Add(Players.PLAYER_ONE, new Score());
+        scores.Add(Players.PLAYER_TWO, new Score());
+        scores.Add(Players.PLAYER_THREE, new Score());
+        scores.Add(Players.PLAYER_FOUR, new Score());
     }
+
 
     public static void addPoints(Players player, Animal animal)
     {
@@ -50,6 +73,7 @@ public class GameManager : MonoBehaviour
     public static Score GetScore(Players player)
     {
         return scores[player];
+
     }
 
     private void Update()
@@ -73,10 +97,17 @@ public class GameManager : MonoBehaviour
             timerManager.ChangeText(timerTextGame);
             timerManager.ResetTimer(120);
             gameState = GameState.PLAY;
+            _audioSource.PlayOneShot(cloche);
+
         }
         else if (timerManager.timer < 0 && gameState == GameState.PLAY)
         {
             gameState = GameState.END;
+            spawningManager.stopSpawning();
+
+            _audioSource.clip = scoreRecapSound;
+            _audioSource.Play();
+            _audioSource.loop = true;
         }
 
         finalScore.gameObject.SetActive(gameState == GameState.END);

@@ -42,6 +42,7 @@ public class Score
     public int getChicken()
     {
         var chickenType = typeof(Chicken);
+
         if (caught.ContainsKey(chickenType))
         {
             return caught[chickenType];

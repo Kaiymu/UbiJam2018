@@ -60,5 +60,5 @@ MonoBehaviour:
   initialNumberOfAnimals: 1
   startSpawningTimeInSec: 3
   minSpawningTimeInSec: 1
-  maxSpawningTimeInSec: 5
+  maxSpawningTimeInSec: 4
   customBoundValue: {x: 20, y: 6}
