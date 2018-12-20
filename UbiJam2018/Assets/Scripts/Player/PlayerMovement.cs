@@ -106,31 +106,29 @@ public class PlayerMovement : MonoBehaviour
         if (inputKeyboardHorizontal > 0 || inputJoystickHorizontal > 0)
         {
             _direction.x = -transform.right.x;
-            _rig2D.AddForce(-transform.right * playerSpeed, ForceMode2D.Force);
         }
         else if (inputKeyboardHorizontal < 0 || inputJoystickHorizontal < 0)
         {
             _direction.x = transform.right.x;
-            _rig2D.AddForce(transform.right * playerSpeed, ForceMode2D.Force);
         }
 
         if (inputKeyboardVertical > 0 || inputJoystickVertical > 0)
         {
             _direction.y = transform.up.y;
-            _rig2D.AddForce(transform.up * playerSpeed, ForceMode2D.Force);
         }
         else if (inputKeyboardVertical < 0 || inputJoystickVertical < 0)
         {
             _direction.y = -transform.up.y;
-            _rig2D.AddForce(-transform.up * playerSpeed, ForceMode2D.Force);
         }
+
+        _rig2D.AddForce(_direction.normalized * playerSpeed, ForceMode2D.Force);
 
         // Dashing
         if ((Input.GetKeyDown(KeyCode.E) || inputManager.GetJoystickSubmit(_player.playerType)) && !_isDashing)
         {
             _isDashing = true;
             _audioSource.PlayOneShot(dashSound);
-            _rig2D.AddForce(_direction * dashForce, ForceMode2D.Impulse);
+            _rig2D.AddForce(_direction.normalized * dashForce, ForceMode2D.Impulse);
         }
 
         if (_isDashing)
