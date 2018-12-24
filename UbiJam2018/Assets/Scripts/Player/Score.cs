@@ -12,7 +12,7 @@ public class Score
     {
     }
 
-    public void add(Animal animal)
+    public void Add(Animal animal)
     {
         Type type = animal.GetType();
         if (!caught.ContainsKey(type))

@@ -5,15 +5,20 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+
+    [Header("Score")]
     public Text ScoreP1;
     public Text ScoreP2;
     public Text ScoreP3;
     public Text ScoreP4;
 
+    public List<Team> teamScoreAssociated = new List<Team>(4);
+
     public static GameManager Instance;
-    public static Dictionary<Players, Score> scores = new Dictionary<Players, Score>();
+    public static Dictionary<Team, Score> scores = new Dictionary<Team, Score>();
 
     public enum Players { NONE, PLAYER_ONE, PLAYER_TWO, PLAYER_THREE, PLAYER_FOUR }
+    public enum Team { NONE, TEAM_1, TEAM_2, TEAM_3, TEAM_4}
 
     public enum GameState { NONE, START, PLAY, END }
     public GameState gameState;
@@ -45,7 +50,6 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-
         _audioSource = GetComponent<AudioSource>();
         _audioSource.clip = rumbleSound;
         _audioSource.Play();
@@ -53,27 +57,27 @@ public class GameManager : MonoBehaviour
 
         scores.Clear();
 
-        scores.Add(Players.PLAYER_ONE, new Score());
-        scores.Add(Players.PLAYER_TWO, new Score());
-        scores.Add(Players.PLAYER_THREE, new Score());
-        scores.Add(Players.PLAYER_FOUR, new Score());
+        scores.Add(Team.TEAM_1, new Score());
+        scores.Add(Team.TEAM_2, new Score());
+        scores.Add(Team.TEAM_3, new Score());
+        scores.Add(Team.TEAM_4, new Score());
     }
 
-
-    public static void addPoints(Players player, Animal animal)
+    public void AddPoints(Team player, Animal animal)
     {
         if (animal == null)
             return;
 
-        if (!scores.ContainsKey(player))
+        if (!scores.ContainsKey(player)) {
             scores[player] = new Score();
-        scores[player].add(animal);
+        }
+
+        scores[player].Add(animal);
     }
 
-    public static Score GetScore(Players player)
+    public static Score GetScore(Team player)
     {
         return scores[player];
-
     }
 
     private void Update()
@@ -84,10 +88,10 @@ public class GameManager : MonoBehaviour
 
     private void SetScores()
     {
-        ScoreP1.text = scores.ContainsKey(Players.PLAYER_ONE) ? GetScore(Players.PLAYER_ONE).ToString() : "0";
-        ScoreP2.text = scores.ContainsKey(Players.PLAYER_TWO) ? GetScore(Players.PLAYER_TWO).ToString() : "0";
-        ScoreP3.text = scores.ContainsKey(Players.PLAYER_THREE) ? GetScore(Players.PLAYER_THREE).ToString() : "0";
-        ScoreP4.text = scores.ContainsKey(Players.PLAYER_FOUR) ? GetScore(Players.PLAYER_FOUR).ToString() : "0";
+        ScoreP1.text = scores.ContainsKey(teamScoreAssociated[0]) ? GetScore(teamScoreAssociated[0]).ToString() : "0";
+        ScoreP2.text = scores.ContainsKey(teamScoreAssociated[1]) ? GetScore(teamScoreAssociated[1]).ToString() : "0";
+        ScoreP3.text = scores.ContainsKey(teamScoreAssociated[2]) ? GetScore(teamScoreAssociated[2]).ToString() : "0";
+        ScoreP4.text = scores.ContainsKey(teamScoreAssociated[3]) ? GetScore(teamScoreAssociated[3]).ToString() : "0";
     }
 
     public void SetGameState()

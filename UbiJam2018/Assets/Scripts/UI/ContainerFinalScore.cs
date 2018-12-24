@@ -10,7 +10,7 @@ public class ContainerFinalScore : MonoBehaviour {
     public Text sheep;
     public Text cow;
 
-    public GameManager.Players players;
+    public GameManager.Team players;
 
     private void Start()
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FarmingZone : MonoBehaviour {
 
-    public GameManager.Players playersFarm;
+    public GameManager.Team playersFarm;
 
     private List<Animal> _animalsInFarms = new List<Animal>();
 
