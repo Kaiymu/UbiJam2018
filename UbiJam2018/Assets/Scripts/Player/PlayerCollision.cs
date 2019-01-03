@@ -41,6 +41,11 @@ public class PlayerCollision : MonoBehaviour
         if (collision.gameObject.tag == "TriggerPlayer" && _playerMovement.movementState == PlayerMovement.MovementState.DASH)
         {
             var playerEnnemy = collision.transform.parent.gameObject;
+
+            // If same team, ignore collision
+            if (playerEnnemy.GetComponent<Player>().teamType == player.teamType)
+                return;
+
             var animalHold = playerEnnemy.GetComponent<PlayerGrab>().animalHold;
 
             if (_playerGrab.animalHold != null && animalHold != null)
