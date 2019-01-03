@@ -387,10 +387,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a8d8616a095d3f46a24167e719b4dac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: 71000000
-  right: 64000000
-  up: 7a000000
-  down: 73000000
+  left: 
+  right: 
+  up: 
+  down: 
   useBonus: 65000000
   movementState: 0
   playerSpeed: 50
