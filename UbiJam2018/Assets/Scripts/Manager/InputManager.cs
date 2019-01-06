@@ -41,13 +41,13 @@ public class InputManager : MonoBehaviour
     public bool GetJoystickSubmit(GameManager.Players players)
     {
         if (players == GameManager.Players.PLAYER_ONE) {
-            return Input.GetKeyDown(KeyCode.Joystick1Button0);
+            return Input.GetKeyDown(KeyCode.Joystick1Button5);
         } else if (players == GameManager.Players.PLAYER_TWO) {
-            return Input.GetKeyDown(KeyCode.Joystick2Button0);
+            return Input.GetKeyDown(KeyCode.Joystick2Button5);
         } else if (players == GameManager.Players.PLAYER_THREE) {
-            return Input.GetKeyDown(KeyCode.Joystick3Button0);
+            return Input.GetKeyDown(KeyCode.Joystick1Button4);
         } else if (players == GameManager.Players.PLAYER_FOUR) {
-            return Input.GetKeyDown(KeyCode.Joystick4Button0);
+            return Input.GetKeyDown(KeyCode.Joystick2Button5);
         }
 
         return false;
